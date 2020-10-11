@@ -1,0 +1,44 @@
+
+<aside id="sidebar">
+
+    <header>
+        <h1>Search Box</h1>
+    </header>
+    <br>
+    <h3>Search movies by exact actor and/or director fullname</h3> <br>
+   <form action="{{handler_url}}" method="post">
+       {{form.csrf_token}}
+        <div>
+            {{form.actor.label}}
+            <br>
+            {{form.actor }}
+            <br>
+            <br>
+            {{form.director.label}}
+            <br>
+            {{form.director}}
+        </div>
+       {{form.search}}
+   </form>
+
+    <h3 style="margin-top: 15px">Search by selecting a genre</h3>
+    <div id="genre_box">
+        {% for key in genre_urls %}
+            <a href="{{ genre_urls[key] }}">{{ key }}</a>
+        {% endfor %}
+    </div>
+
+    <h3>Search by movie title</h3>
+    <br>
+    <form action="{{handler_url_title}}" method="post">
+        {{ title_form.csrf_token }}
+        <div>
+            {{title_form.title.label}}
+            <br>
+            {{title_form.title}}
+        </div>
+        {{title_form.search}}
+
+    </form>
+
+</aside>

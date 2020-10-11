@@ -1,0 +1,16 @@
+{% extends 'layout.html' %} {% block content %}
+<main id="main">
+
+  <h1>The Top 6 Highest Revenue Movies</h1><br><br>
+  <div class="main-page-content">
+    {% for movie in top_6_picks %}
+       <div class="main-page-movie">
+          <img src="{{movie.cover_url}}" style="height:250px; margin:5px auto; width:200px">
+          <h3>{{movie.title}}</h3>
+          <p>Revenues: {{movie.revenue}} millions</p>
+          <button class="btn-general" style="position:absolute; bottom:0px; left:35%;" onclick="location.href='{{ movie.add_review_url }}'">Review</button>
+       </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

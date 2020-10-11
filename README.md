@@ -1,4 +1,4 @@
-# CS235 Flix
+# CS235 Flix - part 3
 
 ### Requirements for this project:
 1. PyCharm

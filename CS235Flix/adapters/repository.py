@@ -345,3 +345,13 @@ class AbstractRepository(abc.ABC):
         """ Returns a list of movies recommend for the user
         """
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_earliest_year(self) -> int:
+        """ Returns the earliest release year of a movie in the repository """
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_latest_year(self) -> int:
+        """ Returns the latest release year of a movie in the repository """
+        raise NotImplementedError

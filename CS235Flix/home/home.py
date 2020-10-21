@@ -20,8 +20,8 @@ def home():
     for movie in top_6_picks:
         movie['view_review_url'] = url_for('home_bp.home')
         movie['add_review_url'] = url_for('movies_bp.review_on_movie', movie=movie['id'])
-        possible_movies = access.search_movie(movie['title'])
-        movie['cover_url'] = possible_movies[0]['cover url']
+        # possible_movies = access.search_movie(movie['title'])
+        # movie['cover_url'] = possible_movies[0]['cover url']
 
     return render_template(
         'home/home.html',

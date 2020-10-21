@@ -419,3 +419,12 @@ def test_repository_can_suggest_desired_movies_to_a_user(in_memory_repo):
 
     assert len(suggestions) == 1
     assert in_memory_repo.get_movie_by_index(1) in suggestions
+
+
+def test_earliest_year(in_memory_repo):
+
+    assert in_memory_repo.get_earliest_year() == 2012
+
+
+def test_latest_year(in_memory_repo):
+    assert in_memory_repo.get_latest_year() == 2016

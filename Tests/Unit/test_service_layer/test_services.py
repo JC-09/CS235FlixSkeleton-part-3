@@ -305,6 +305,13 @@ def test_get_suggestions_for_a_user(in_memory_repo):
     assert suggestions[0]['title'] == "Guardians of the Galaxy"
 
 
+def test_getting_earliest_year(in_memory_repo):
+    assert in_memory_repo.get_earliest_year() == 2012
+
+
+def test_getting_latest_year(in_memory_repo):
+    assert in_memory_repo.get_latest_year() == 2016
+
 
 
 

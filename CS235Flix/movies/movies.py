@@ -30,13 +30,12 @@ def movies_by_release_year():
     target_year = request.args.get('year')
     movie_to_show_reviews = request.args.get('view_reviews_for')
 
-    # Fetch the latest and the oldest movies in the series.
-    latest_movie = services.get_latest_movie(repo.repo_instance)
-    oldest_movie = services.get_oldest_movie(repo.repo_instance)
+    earliest_year = services.get_earliest_year(repo=repo.repo_instance)
+    latest_year = services.get_latest_year(repo=repo.repo_instance)
 
     if target_year is None:
         # No year query parameter, so return movies from the latest release year of the series
-        target_year = latest_movie['release_year']
+        target_year = latest_year
     else:
         # Convert target_year from string to int
         target_year = int(target_year)
@@ -57,21 +56,21 @@ def movies_by_release_year():
     # last_page_url = None
     previous_page_url = None
     next_page_url = None
-    last_page_url = url_for('movies_bp.movies_by_release_year', year=int(oldest_movie['release_year']))
-    first_page_url = url_for('movies_bp.movies_by_release_year', year=int(latest_movie['release_year']))
+    last_page_url = url_for('movies_bp.movies_by_release_year', year=earliest_year)  # year=int(oldest_movie['release_year'])
+    first_page_url = url_for('movies_bp.movies_by_release_year', year=latest_year)  # int(latest_movie['release_year'])
 
     if num_of_movies_found > 0:
         previous_year = int(movies[0]['release_year']) - 1
         next_year = int(movies[0]['release_year']) + 1
 
-        next_page_url = url_for('movies_bp.movies_by_release_year', year=previous_year ) # previous_year
+        next_page_url = url_for('movies_bp.movies_by_release_year', year=previous_year)  # previous_year
 
         previous_page_url = url_for('movies_bp.movies_by_release_year', year=next_year)
 
-        if previous_year < 2006:
+        if previous_year < earliest_year:
             next_page_url = None
 
-        if next_year > 2016:
+        if next_year > latest_year:
             previous_page_url = None
 
         # Construct urls for viewing movie reviews and adding reviews
@@ -79,8 +78,6 @@ def movies_by_release_year():
             movie['view_review_url'] = url_for('movies_bp.movies_by_release_year', year=target_year,
                                                view_reviews_for=movie['id'])
             movie['add_review_url'] = url_for('movies_bp.review_on_movie', movie=movie['id'])
-
-
 
         # Generate the webpage to display the movie
         return render_template(

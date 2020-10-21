@@ -153,6 +153,17 @@ def get_suggestions_for_a_user(username: str, repo: AbstractRepository):
     movies_as_dict = movies_to_dict(movies)
     return movies_as_dict
 
+
+def get_earliest_year(repo: AbstractRepository):
+
+    return repo.get_earliest_year()
+
+
+def get_latest_year(repo:AbstractRepository):
+
+    return repo.get_latest_year()
+
+
 # ============================================
 # Functions to convert model entities to dicts
 # ============================================

@@ -317,6 +317,16 @@ class MemoryRepository(AbstractRepository):
                     suggestion.append(suggested_movie)
         return suggestion
 
+    def get_earliest_year(self):
+        movie = self.get_oldest_movie()
+        if movie is not None:
+            return movie.release_year
+
+    def get_latest_year(self):
+        movie = self.get_latest_movie()
+        if movie is not None:
+            return movie.release_year
+
 
 def read_csv_file(filename: str):
     with open(filename, encoding='utf-8-sig') as infile:

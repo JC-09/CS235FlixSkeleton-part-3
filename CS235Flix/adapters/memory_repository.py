@@ -360,6 +360,7 @@ def load_movies_actors_directors_genre_description(data_path: str, repo: MemoryR
 
         director = Director(data_row[4])  # can have duplicate
         list_of_actor_names = data_row[5].split(",")
+        list_of_actor_names = [name.strip() for name in list_of_actor_names]
         list_of_actors = [Actor(actor_full_name) for actor_full_name in list_of_actor_names]  # can have duplicate
 
         release_year = int(data_row[6])

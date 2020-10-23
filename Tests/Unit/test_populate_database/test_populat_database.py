@@ -7,8 +7,8 @@ def test_database_populate_inspect_table_names(database_engine):
     inspector = inspect(database_engine)
     all_table_names = inspector.get_table_names()
 
-    assert all_table_names == ['actors', 'directors', 'genres', 'movie_actors', 'movie_directors', 'movie_genres', 'movies', 'reviews', 'users']
-    assert len(all_table_names) == 9
+    assert all_table_names == ['actors', 'directors', 'genres', 'movie_actors', 'movie_genres', 'movies', 'reviews', 'users']
+    assert len(all_table_names) == 8
 
 
 def test_database_populate_select_all_genres(database_engine):

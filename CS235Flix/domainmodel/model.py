@@ -498,3 +498,19 @@ def make_review(review_text: str, user: User, movie: Movie, rating: int, timesta
     movie.add_review(review)
 
     return review
+
+
+def make_movie_genre_association(movie: Movie, genre: Genre):
+    if genre.is_applied_to(movie):
+        raise ModelException(f"Genre {genre.genre_name} already applied to Movie '{movie.title}'")
+
+    movie.add_genre(genre)
+    genre.add_Movie(movie)
+
+
+def make_movie_actor_association(movie: Movie, actor: Actor):
+    if actor in list(movie.actors):
+        raise ModelException(f"Actor {actor.actor_full_name} already played the Movie '{movie.title}'")
+
+    movie.add_actor(actor)
+    actor.add_played_movies(movie)

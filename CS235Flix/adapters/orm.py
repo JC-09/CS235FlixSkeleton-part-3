@@ -29,13 +29,11 @@ movies = Table(
     'movies', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('title', String(255), nullable=False),
-    # Column('genre', String(1024), nullable=False),
     Column('description', String(1024), nullable=False),
-    # Column('director', String(1024), nullable=False),
-    # Column('actors', String(1024), nullable=False),
+    Column('director', ForeignKey('directors.name')),
     Column('release_year', Integer, nullable=False),
     Column('runtime_minutes', Integer, nullable=False),
-    Column('revenue', Float, nullable=True, default=0),
+    Column('revenue', Float, nullable=True, default=0.0),
 )
 
 actors = Table(
@@ -72,18 +70,18 @@ movie_actors = Table(
 )
 
 
-movie_directors = Table(
-    'movie_directors', metadata,
-    Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('movie_id', ForeignKey('movies.id')),
-    Column('director_id', ForeignKey('directors.id'))
-)
+# movie_directors = Table(
+#     'movie_directors', metadata,
+#     Column('id', Integer, primary_key=True, autoincrement=True),
+#     Column('movie_id', ForeignKey('movies.id')),
+#     Column('director_id', ForeignKey('directors.id'))
+# )
 
 
 def map_model_to_tables():
     mapper(
         model.User, users, properties={
-            '_User__username': users.c.username,
+            '_User__user_name': users.c.username,
             '_User__password': users.c.password,
             '_User__reviews': relationship(model.Review, backref='_Review__author')
         }
@@ -101,10 +99,8 @@ def map_model_to_tables():
         model.Movie, movies, properties={
             '_Movie__id': movies.c.id,
             '_Movie__title': movies.c.title,
-            # '_Movie__genres': movies.c.genre,
             '_Movie__description': movies.c.description,
-            # '_Movie__director': movies.c.director,
-            # '_Movie__actors':movies.c.actors,
+            '_Movie__director__director_full_name': movies.c.director,
             '_Movie__release_year': movies.c.release_year,
             '_Movie__runtime_minutes': movies.c.runtime_minutes,
             '_Movie__revenue': movies.c.revenue,
@@ -112,26 +108,23 @@ def map_model_to_tables():
         }
     )
 
+    mapper(model.Director, directors, properties={
+        '_Director__director_full_name': directors.c.name,
+        '_Director__directed_movies': relationship(model.Movie, backref='_Movie__director')
+    })
+
     mapper(model.Actor, actors, properties={
         '_Actor__actor_full_name': actors.c.name,
         '_Actor__played_movies': relationship(
             movies_mapper,
             secondary=movie_actors,
-            backref='_Movie_actors'
+            backref='_Movie__actors'
         )
-    })
-
-    mapper(model.Director, directors, properties={
-        '_Director__director_full_name': directors.c.name,
-        '_Director__directed_movies': relationship(
-            movies_mapper,
-            secondary=movie_directors,
-            backref='_Movie__director')
     })
 
     mapper(model.Genre, genres, properties={
         '_Genre__genre_name': genres.c.name,
-        '_Genre_classified_movies': relationship(
+        '_Genre__classified_movies': relationship(
             movies_mapper,
             secondary=movie_genres,
             backref='_Movie__genres'

@@ -106,7 +106,7 @@ def movie_record_generator(filename: str):
                 actors[actor_fullname] = list()
             actors[actor_fullname].append(movie_key)
 
-        movie_data = [movie_key, movie_title, movie_description, release_year, runtime, movie_revenue]
+        movie_data = [movie_key, movie_title, movie_description, movie_director_fullname, release_year, runtime, movie_revenue]
         yield movie_data
 
 
@@ -206,8 +206,8 @@ def populate(engine: Engine, data_path: str):
     directors = dict()
 
     insert_movies = """
-        INSERT INTO movies (id, title, description, release_year, runtime_minutes, revenue)
-        VALUES(?, ?, ?, ?, ?, ?)"""
+        INSERT INTO movies (id, title, description, director, release_year, runtime_minutes, revenue)
+        VALUES(?, ?, ?, ?, ?, ?, ?)"""
     cursor.executemany(insert_movies, movie_record_generator(os.path.join(data_path, 'movies.csv')))
 
     insert_genres = """
@@ -249,11 +249,11 @@ def populate(engine: Engine, data_path: str):
         VALUES(?, ?, ?)"""
     cursor.executemany(insert_movie_actors, movie_actors_generator())
 
-    insert_movie_directors = """
-        INSERT INTO movie_directors(
-        id, movie_id, director_id)
-        VALUES(?, ?, ?)"""
-    cursor.executemany(insert_movie_directors, movie_directors_generator())
+    # insert_movie_directors = """
+    #     INSERT INTO movie_directors(
+    #     id, movie_id, director_id)
+    #     VALUES(?, ?, ?)"""
+    # cursor.executemany(insert_movie_directors, movie_directors_generator())
 
     connection.commit()
     connection.close()

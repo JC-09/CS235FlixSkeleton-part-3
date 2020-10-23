@@ -19,11 +19,13 @@ TEST_DATA_PATH_DATABASE = "Tests/data/database"
 TEST_DATABASE_URI_IN_MEMORY = 'sqlite://'
 TEST_DATABASE_URI_FILE = 'sqlite:///cs235flix-test.db'
 
+
 @pytest.fixture
 def in_memory_repo():
     repo = MemoryRepository()
     memory_repository.populate(TEST_DATA_PATH_MEMORY, repo)
     return repo
+
 
 @pytest.fixture
 def database_engine():
@@ -35,8 +37,22 @@ def database_engine():
     map_model_to_tables()
     database_repository.populate(engine, TEST_DATA_PATH_DATABASE)
     yield engine
-    # metadata.drop_all(engine)
+    metadata.drop_all(engine)
     clear_mappers()
+
+
+@pytest.fixture
+def empty_session():
+    engine = create_engine(TEST_DATABASE_URI_IN_MEMORY)
+    metadata.create_all(engine)
+    for table in reversed(metadata.sorted_tables):
+        engine.execute(table.delete())
+    map_model_to_tables()
+    session_factory = sessionmaker(bind=engine)
+    yield session_factory()
+    metadata.drop_all(engine)
+    clear_mappers()
+
 
 @pytest.fixture
 def client():

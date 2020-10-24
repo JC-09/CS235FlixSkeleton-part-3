@@ -11,7 +11,7 @@ class Config:
     # Flask configuration
     FLASK_APP = environ.get('FLASK_APP')
     FLASK_ENV = environ.get('FLASK_ENV')
-
+    TESTING = environ.get('TESTING')
     SECRET_KEY = environ.get('SECRET_KEY')
 
     # Database configuration

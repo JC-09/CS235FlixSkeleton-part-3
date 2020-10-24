@@ -208,7 +208,7 @@ def review_on_movie():
         movie = services.get_movie(movie_id, repo.repo_instance)
         release_year = movie['release_year']
         # genre_name = movie['genres'][0]
-        print(movie['reviews'][0]['timestamp'].date())
+        print(movie['reviews'][0]['timestamp'])
         # Cause the web browser to display the page of all movies that have the same genre as the reviewed movie, and
         # display all reviews, including the new review.
 

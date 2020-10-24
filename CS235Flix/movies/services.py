@@ -121,8 +121,7 @@ def search_movie_directed_by_director_fullname(director_fullname: str, repo: Abs
 
 
 def search_movie_by_actor_and_director(actor_fullname: str, director_fullname: str, repo: AbstractRepository):
-    movies = repo.search_movies_by_actor_and_director(actor_fullname=actor_fullname,
-                                                      director_fullname=director_fullname)
+    movies = repo.search_movies_by_actor_and_director(actor_fullname, director_fullname)
     if len(movies) == 0:
         raise NoSearchResultsException
 

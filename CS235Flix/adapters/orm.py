@@ -3,7 +3,7 @@ from sqlalchemy import (
     ForeignKey
 )
 from sqlalchemy.orm import mapper, relationship
-
+import datetime
 from CS235Flix.domainmodel import model
 
 metadata = MetaData()
@@ -22,7 +22,7 @@ reviews = Table(
     Column('movie_id', ForeignKey('movies.id')),
     Column('review_text', String(1024), nullable=False),
     Column('ratings', Integer, nullable=False),
-    Column('timestamp', DateTime, nullable=False)
+    Column('timestamp', Date, nullable=False)
 )
 
 movies = Table(
@@ -97,13 +97,13 @@ def map_model_to_tables():
 
     movies_mapper = mapper(
         model.Movie, movies, properties={
-            '_Movie__id': movies.c.id,
-            '_Movie__title': movies.c.title,
+            '_id': movies.c.id,
+            '_title': movies.c.title,
             '_Movie__description': movies.c.description,
             '_Movie__director__director_full_name': movies.c.director,
-            '_Movie__release_year': movies.c.release_year,
+            '_release_year': movies.c.release_year,
             '_Movie__runtime_minutes': movies.c.runtime_minutes,
-            '_Movie__revenue': movies.c.revenue,
+            '_revenue': movies.c.revenue,
             '_Movie__reviews': relationship(model.Review, backref='_Review__movie')
         }
     )

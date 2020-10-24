@@ -26,28 +26,28 @@ class AbstractRepository(abc.ABC):
         """
         raise NotImplementedError
 
-    @abc.abstractmethod
-    def get_user_watched_movies(self, user:User) -> List[Movie]:
-        """ Returns a list of movies that had been watched by the given user
-            Returns None if the given user does not exist in the repository
-            Returns an empyt list of the given user has not watched any movies yet
-        """
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def get_user_watched_movies(self, user:User) -> List[Movie]:
+    #     """ Returns a list of movies that had been watched by the given user
+    #         Returns None if the given user does not exist in the repository
+    #         Returns an empyt list of the given user has not watched any movies yet
+    #     """
+    #     raise NotImplementedError
 
     @abc.abstractmethod
-    def get_user_reviews(self, user:User) -> List[Review]:
+    def get_user_reviews(self, user: User) -> List[Review]:
         """ Returns a list of reviews made by the given User.
             This method returns None if the given user does not exist in the repository
             This method returns an empty list if the given user has not made any reviews yet
         """
         raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_user_time_spent_watching_movies_minutes(self, user:User):
-        """ Returns the total time (in minutes) the user spent on watching movies
-            This method returns None if the given user does not exist in the repository
-        """
-        raise NotImplementedError
+    #
+    # @abc.abstractmethod
+    # def get_user_time_spent_watching_movies_minutes(self, user:User):
+    #     """ Returns the total time (in minutes) the user spent on watching movies
+    #         This method returns None if the given user does not exist in the repository
+    #     """
+    #     raise NotImplementedError
 
 
     @abc.abstractmethod
@@ -73,7 +73,7 @@ class AbstractRepository(abc.ABC):
         """
             Returns a list of colleagues of the actor with full name as actor_full_name
             This method returns None if there is no Actor with the name actor_full_name, and
-            returns an empty list if the actor has no colleague.
+            returns an None list if the actor has no colleague.
         """
         raise NotImplementedError
 
@@ -159,19 +159,17 @@ class AbstractRepository(abc.ABC):
         """
         raise NotImplementedError
 
-
     @abc.abstractmethod
     def get_top_6_highest_revenue_movies(self) -> List[Movie]:
         """ Returns a list of the top 5 highest revenue movies in the repository """
         raise NotImplementedError
 
     @abc.abstractmethod
-    def search_movies_by_actor_and_director(self, actor_fullname: str, director_name: str):
+    def search_movies_by_actor_and_director(self, actor_fullname: str, director_name: str) -> List[Movie]:
         """ Returns a list of movies played by a specific actor AND directed by the specific director
             Returns an empty list when the search criteria returns nothing
         """
         raise NotImplementedError
-
 
     @abc.abstractmethod
     def search_movie_by_title(self, title: str) -> List[Movie]:
@@ -212,7 +210,6 @@ class AbstractRepository(abc.ABC):
             in the previous year.
         """
         raise NotImplementedError
-
 
     @abc.abstractmethod
     def get_total_number_of_movies_in_repo(self):
@@ -311,15 +308,15 @@ class AbstractRepository(abc.ABC):
         """ Returns the total number of reviews stored in the repository """
         raise NotImplementedError
 
-    @abc.abstractmethod
-    def add_watchlist(self, watchlist:WatchList):
-        """ Adds an empty watchlist to the repository """
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_watchlist(self) -> List[WatchList]:
-        """ Returns a list of watchlist in the repository"""
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def add_watchlist(self, watchlist:WatchList):
+    #     """ Adds an empty watchlist to the repository """
+    #     raise NotImplementedError
+    #
+    # @abc.abstractmethod
+    # def get_watchlist(self) -> List[WatchList]:
+    #     """ Returns a list of watchlist in the repository"""
+    #     raise NotImplementedError
 
     @abc.abstractmethod
     def get_user_reviewed_movie(self, username:str) -> List[Movie]:

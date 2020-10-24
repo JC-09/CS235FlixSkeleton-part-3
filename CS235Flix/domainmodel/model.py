@@ -141,32 +141,32 @@ class Genre:
 
 
 class Movie:
+    _revenue = None
+
     def __init__(self, title: str, release_year: int, id: int = None):
-        self.__id = id
+        self._id = id
         self.__description = ""
         self.__director = None
         self.__actors = list()
         self.__genres = list()
         self.__reviews = list()
         self.__runtime_minutes = 0
-        self.__revenue = 0
+        self._revenue = 0.0
         # self.__cover_url = None
 
         if title != "" and type(title) is str and type(release_year) is int and release_year >= 1900:
-            self.__title = title
-            self.__release_year = release_year
+            self._title = title
+            self._release_year = release_year
         elif (title == "" or type(title) is not str) and (type(release_year) is int and release_year >= 1900):
-            self.__title = None
-            self.__release_year = release_year
+            self._title = None
+            self._release_year = release_year
         elif (type(release_year) is not int) and (len(title) > 0 and type(title) is str):
-            self.__title = title
-            self.__release_year = None
+            self._title = title
+            self._release_year = None
         else:
-            self.__title = None
-            self.__release_year = None
-        # access = imdb.IMDb()
-        # possible_movies = access.search_movie(self.__title)
-        # self.__cover_url = possible_movies[0]['cover url']
+            self._title = None
+            self._release_year = None
+
 
     # @property
     # def cover_url(self) -> str:
@@ -174,19 +174,19 @@ class Movie:
 
     @property
     def revenue(self) -> float:
-        return self.__revenue
+        return self._revenue
 
     @property
     def title(self) -> str:
-        return self.__title
+        return self._title
 
     @property
     def id(self) -> int:
-        return self.__id
+        return self._id
 
     @property
     def release_year(self) -> int:
-        return self.__release_year
+        return self._release_year
 
     @property
     def description(self) -> str:
@@ -245,9 +245,9 @@ class Movie:
                 raise ValueError
         return False
 
-    def set_revenue(self, revenue:float):
+    def set_revenue(self, revenue: float):
         if revenue >= 0:
-            self.__revenue = revenue
+            self._revenue = revenue
 
     def add_actor(self, actor: Actor) -> bool:
         if isinstance(actor, Actor):
@@ -294,7 +294,7 @@ class Movie:
             return self.release_year < other.release_year
 
     def __hash__(self):
-        return hash((self.__title, self.__release_year))
+        return hash((self._title, self._release_year))
 
 
 class User:

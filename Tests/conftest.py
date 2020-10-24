@@ -50,7 +50,39 @@ def empty_session():
     map_model_to_tables()
     session_factory = sessionmaker(bind=engine)
     yield session_factory()
-    metadata.drop_all(engine)
+    # metadata.drop_all(engine)
+    clear_mappers()
+
+
+@pytest.fixture
+def session():
+    clear_mappers()
+    engine = create_engine(TEST_DATABASE_URI_IN_MEMORY)
+    metadata.create_all(engine)
+
+    for table in reversed(metadata.sorted_tables):
+        engine.execute(table.delete())
+
+    map_model_to_tables()
+    session_factory = sessionmaker(bind=engine)
+    database_repository.populate(engine, TEST_DATA_PATH_DATABASE)
+    yield session_factory()
+    # metadata.drop_all(engine)
+    clear_mappers()
+
+
+@pytest.fixture
+def session_factory():
+    clear_mappers()
+    engine = create_engine(TEST_DATABASE_URI_IN_MEMORY)
+    metadata.create_all(engine)
+    for table in reversed(metadata.sorted_tables):
+        engine.execute(table.delete())
+    map_model_to_tables()
+    session_factory = sessionmaker(bind=engine)
+    database_repository.populate(engine, TEST_DATA_PATH_DATABASE)
+    yield session_factory
+    # metadata.drop_all(engine)
     clear_mappers()
 
 

@@ -115,7 +115,7 @@ class MemoryRepository(AbstractRepository):
                 matching_movies.append(movie)
         return matching_movies
 
-    def get_movies_played_by_an_actor(self, actor_fullname:str):
+    def get_movies_played_by_an_actor(self, actor_fullname: str):
         actor_fullname = actor_fullname.strip()
         actor = next((actor for actor in self._actors if actor.actor_full_name.lower() == actor_fullname.lower()), None)
         if actor is not None:

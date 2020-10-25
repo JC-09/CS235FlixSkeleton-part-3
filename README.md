@@ -1,4 +1,8 @@
 # CS235 Flix - part 3
+![main layout](/screenshots/main_layout.png)
+
+### New Features:
+* Integrated with a SQLite database to allow data persistence
 
 ### Requirements for this project:
 1. PyCharm
@@ -33,11 +37,19 @@
 * Once all packages are installed, you are ready to run and test CS235 Flix
 
 ### Running PyTest
-* In the PyCharm Terminal, run: <code>python -m pytest</code> or <code>python3 -m pytest</code> depending on your setup.
+* Running Pytest from in terminal:
+    * In the PyCharm Terminal, run: <code>python -m pytest</code> or <code>python3 -m pytest</code> depending on your setup.
 You should see the following outcome:
 
-    ![Results of running pytest](/screenshots/running_pytest.png)
+    ![Results of running pytest in Terminal](/screenshots/running_pytest.png)
 
+* Running Pytest in PyCharm: 
+    * Comment out line 17 and line 18 and uncomment line 13 and line 14 <code>Tests/conftest.py</code>
+    * Comment out line 6 and uncomment line 7 in <code>Tests/Unit/test_domain_model/test_movie_file_csv_reader.py</code>
+    * Right click the <code>Tests</code> folder and select "Run 'pytest' in 'Tests'"
+    * Result of running Pytest in PyCharm:
+    
+    ![Results of running pytest in PyCharm](/screenshots/running_pytest_in_pycharm.png)
 
 ### Running CS235 Flix
 * In the PyCharm Terminal, execute <code>flask run</code> command. 

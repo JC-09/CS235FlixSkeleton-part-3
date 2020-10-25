@@ -8,10 +8,10 @@
     <h3>Search movies by exact actor and/or director fullname</h3> <br>
    <form action="{{handler_url}}" method="post">
        {{form.csrf_token}}
-        <div>
+        <div style="margin-top:10px;">
             {{form.actor.label}}
             <br>
-            {{form.actor }}
+            {{form.actor}}
             <br>
             <br>
             {{form.director.label}}
@@ -27,18 +27,18 @@
             <a href="{{ genre_urls[key] }}">{{ key }}</a>
         {% endfor %}
     </div>
+    <div id="search-by-title">
+        <h3>Search by movie title</h3>
+        <br>
+        <form action="{{handler_url_title}}" method="post">
+            {{ title_form.csrf_token }}
+            <div>
+                {{title_form.title.label}}
+                <br>
+                {{title_form.title}}
+            </div>
+            {{title_form.search}}
 
-    <h3>Search by movie title</h3>
-    <br>
-    <form action="{{handler_url_title}}" method="post">
-        {{ title_form.csrf_token }}
-        <div>
-            {{title_form.title.label}}
-            <br>
-            {{title_form.title}}
-        </div>
-        {{title_form.search}}
-
-    </form>
-
+        </form>
+    </div>
 </aside>

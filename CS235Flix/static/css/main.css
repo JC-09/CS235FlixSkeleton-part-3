@@ -43,8 +43,10 @@ h1 {
   border-bottom: 1px solid #bdb8d7;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  color: #bdb8d7;
+  color: white; /*#bdb8d7*/
   display: block;
+  font-size:20px;
+  font-weight:bold;
 }
 
 .btn-nav:hover {
@@ -93,7 +95,7 @@ h1 {
 }
 
 .textarea {
-    width: 80%;
+    width: 100%;
     font-size:20px;
     overflow: auto;
     padding:5px;
@@ -104,16 +106,24 @@ h1 {
   min-height: 100%;
   margin-bottom: -60px;
   font-size: medium;
+  background-image: url("../images/main-background.png");
+  background-size:cover;
 }
 
 #header {
+  background-image: url("../images/curtain-top.png");
+  background-size: cover;
   padding: 20px;
-  background: #fff;
+  background-color: #DDA0DD;
   border-bottom: 1px solid #e0e4e8;
   font-size: 64px;
   font-weight: bold;
   text-align: center;
-  width:80%;
+  width:65%;
+  left:15%;
+  position:absolute;
+  z-index:1;
+  color:gold;
 }
 
 #content-2 {
@@ -121,17 +131,26 @@ h1 {
   margin-left: 200px;
   display: flex;
   flex-direction: column;
+
 }
 
 #container {
   display: flex;
   flex-direction: row;
+  width:65%;
+  position:absolute;
+  left:15%;
+  top:110px;
+  background-image: url("../images/main-background.png");
+  background-size:cover;
+
 }
 
 #nav {
-  width: 200px; /*200px*/
+  width: 15%; /*200px*/
   height: 100%;
-  background: #7532cd;
+  background-image: url("../images/curtain-left.png");
+  background-size:cover;
   padding: 30px 0px;
   float:left;
   position: fixed;
@@ -168,7 +187,7 @@ h1 {
   color: #717171;
   line-height: 25px;
   padding: 10px;
-  width: 70%;
+  width: 100%;
 }
 
 #logo {
@@ -177,17 +196,35 @@ h1 {
 
 
 #sidebar {
-    background-color:#bab6b6; /*#8acd32;*/
+    background-image: url("../images/curtain-right.png");
+    background-size: cover;
     color: #717171;
-    width: 350px;
-    min-height: 100vh;
+    width: 20%; /*350px;*/
+    min-width:320px;
+    /*min-height: 100vh;*/
     height: 100%;
     padding: 20px;
-    border-bottom: 1px solid #e0e4e8;
     right:0;
     float:right;
     position:fixed;
-    z-index:1;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-content: center;
+}
+
+#search-by-title{
+    position:absolute;
+    bottom:10px;
+    width:88%
+}
+
+h1, h2, p{
+    color:white
+}
+
+#sidebar h1, h3, p, label{
+    color:white;
 }
 
 #article-header {
@@ -214,7 +251,7 @@ h1 {
 
 input[type='text'],
     select {
-        width: 80%;
+        width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         display: inline-block;
@@ -227,7 +264,7 @@ input[type='text'],
 
 input[type='password'],
     select {
-        width: 80%;
+        width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         display: inline-block;
@@ -237,7 +274,7 @@ input[type='password'],
     }
 
 input[type='submit'] {
-    width: 80%;
+    width: 100%;
      background-color: #7532cd;
      color: white;
      padding: 10px 20px;
@@ -253,7 +290,7 @@ input[type='submit']:hover {
 }
 
 input[type='search']{
-    width:80%;
+    width:100%;
     font-size:20px;
 }
 
@@ -282,15 +319,15 @@ input[type='number']{
 
 #genre_box a{
     border-radius:10px;
-    padding:10px;
+    padding:7px;
     margin:5px;
     background-color:#7532cd;
+    color:white;
 }
 
 #genre_box a:hover{
     background-color: #ffcccb;
 }
-
 
 .main-page-content{
     display:inline-block;

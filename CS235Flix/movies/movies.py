@@ -373,7 +373,7 @@ def search_movies_by_title():
     return render_template(
         'movies/movies.html',
         title='Movies',
-        movies_title="Search results of " + target_title + " - (" + str(len(movies)) + " results found)",
+        movies_title='Search results of "' + target_title + '" - (' + str(len(movies)) + ' results found)',
         movies=movies,
         form=SearchForm(),
         handler_url=url_for('movies_bp.search'),

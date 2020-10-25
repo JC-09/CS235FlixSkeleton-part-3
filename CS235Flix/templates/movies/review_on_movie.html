@@ -24,7 +24,7 @@
                     {% if form_review.review.errors %}
                         <ul class="errors">
         	            {% for error in form_review.review.errors %}
-        		            <li>{{error}}</li>
+        		            <li style="color:gold;">{{error}}</li>
                         {% endfor %}
                         </ul>
                     {% endif %}
@@ -33,7 +33,7 @@
                     {% if form_review.rating.errors %}
                         <ul class="errors">
         	            {% for error in form_review.rating.errors %}
-        		            <li>{{error}}</li>
+        		            <li style="color:gold;">{{error}}</li>
                         {% endfor %}
                         </ul>
                     {% endif %}

@@ -2,7 +2,10 @@
 ![main layout](/screenshots/main_layout.png)
 
 ### New Features:
-* Integrated with a SQLite database to allow data persistence
+* Integrated with a standalone SQLite database to allow data persistence
+* Users and reviews will be persisted in the database
+* 79 more unit tests 
+* All original features worked in part 2 are available in part 3
 
 ### Requirements for this project:
 1. PyCharm
